@@ -9,7 +9,7 @@ const MadLibsForm = ({ toggleSubmit, addStory }) => {
         color: ""
     }
     const [formData, setFormData] = useState(INITIAL_STATE);
-    const btnDisabled = useRef();
+    const [disable, setDisable] = useState(true);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -26,9 +26,7 @@ const MadLibsForm = ({ toggleSubmit, addStory }) => {
     }
 
     useEffect(() => {
-        //Is it a good idea to create useToggle custom hook and use it inside useEffect hook?
-        btnDisabled.current.disabled = !Object.values(formData).every(x => x !== '');
-        
+        setDisable(!Object.values(formData).every(x => x !== ''))
     }, [formData])
 
     return (
@@ -61,7 +59,7 @@ const MadLibsForm = ({ toggleSubmit, addStory }) => {
                 value={formData.color}
                 onChange={handleChange}
             />
-			<button ref={btnDisabled}>Get Story</button>
+			<button disabled={disable}>Get Story</button>
 		</form>
     )
 }

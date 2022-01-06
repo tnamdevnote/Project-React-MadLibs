@@ -1,9 +1,8 @@
-import { useState } from "react";
 
 const Story = ({ toggleSubmit, story, clearStory }) => {
     const handleClick = () => {
         toggleSubmit();
-        clearStory({});
+        clearStory();
     }
     return (
         <div>
